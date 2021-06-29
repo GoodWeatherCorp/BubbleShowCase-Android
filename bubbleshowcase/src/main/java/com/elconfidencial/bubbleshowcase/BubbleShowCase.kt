@@ -142,10 +142,15 @@ class BubbleShowCase(builder: BubbleShowCaseBuilder){
         mSequenceListener?.let { mSequenceListener.onDismiss() }
     }
 
-    private fun getViewRoot(activity: Activity): ViewGroup {
-        val androidContent = activity.findViewById<ViewGroup>(android.R.id.content)
-        return androidContent.parent.parent as ViewGroup
-    }
+    private val mRootView = builder.mRootView 
+    private fun getViewRoot(activity: Activity): ViewGroup { 
+        return if (mRootView == null) { 
+            val androidContent = activity.findViewById<ViewGroup>(android.R.id.content) 
+            androidContent.parent.parent as ViewGroup 
+        } else { 
+            mRootView 
+        } 
+    } 
 
     private fun getBackgroundDimLayout(): RelativeLayout {
         if(mActivity.get()!!.findViewById<RelativeLayout>(FOREGROUND_LAYOUT_ID) != null)
