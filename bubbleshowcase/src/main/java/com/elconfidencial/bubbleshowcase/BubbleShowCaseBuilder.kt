@@ -256,6 +256,12 @@ class BubbleShowCaseBuilder{
 
         return BubbleShowCase(this)
     }
+    
+    internal var mRootView: ViewGroup? = null 
+    fun rootView(rootView: ViewGroup?): BubbleShowCaseBuilder { 
+        mRootView = rootView 
+        return this 
+    }
 
     /**
      * Show the BubbleShowCase using the params added previously
